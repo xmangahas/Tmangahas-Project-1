@@ -12,9 +12,9 @@ header {
     display: grid;
     grid-template-rows: 200px 200px;
     grid-template-columns: 200px 200px;
-    grid-gap: 10px; /*puts gaps between the boxes */
-    
+    grid-gap: 20px; 
     justify-content: center;
+    position: relative;
 }
 
 /* body {
@@ -22,8 +22,17 @@ header {
     justify-content: center;
 } */
 
-.box {
+/* .box {
     
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    pointer-events: auto;
+} */
+
+.circle {
     border: 2px solid black;
     display: flex;
     align-items: center;
@@ -39,7 +48,7 @@ header {
     
 }
 
-#box1 {
+/* #box1 {
     background: green;
 }
 
@@ -53,4 +62,37 @@ header {
 
 #box4 {
     background: blue;
+} */
+
+#quarterCircleTopLeft {
+    width:200px; 
+    height:200px; 
+    border:3px solid #000; 
+    background: green;
+    border-radius: 200px 0 0 0;
+}
+
+#quarterCircleTopRight {
+    width:200px; 
+    height:200px; 
+    border:3px solid #000; 
+    background: red;
+    border-radius: 0 200px 0 0;
+}
+
+#quarterCircleBottomLeft {
+    width:200px; 
+    height:200px; 
+    border:3px solid #000; 
+    background: yellow;
+    border-radius: 0 0 0 200px;
+}
+
+#quarterCircleBottomRight {
+    width:200px; 
+    height:200px; 
+    border:3px solid #000; 
+    background: blue;
+    border-radius: 0 0 200px 0;
+
 }
