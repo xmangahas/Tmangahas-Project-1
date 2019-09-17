@@ -40,36 +40,47 @@ function playGame () {
 
 }
 
-function showSequence () {
-    
+function showPattern (num) {
+    if (num === 1) {
+        flashGreen();
+    } else if (num === 2) {
+        flashRed();
+    } else if (num === 3) {
+        flashYellow();
+    } else if (num === 4) {
+        flashBlue();
+    }
 }
 
+// showPattern(4);
+
+// idea from https://jsfiddle.net/dwz1ac50/
 function flashGreen () {
     topLeft.style.backgroundColor = "lightgreen";
     setTimeout(function () {
         topLeft.style.backgroundColor = "darkgreen";
-    }, 250);
+    }, 300);
 }
 
 function flashRed () {
     topRight.style.backgroundColor = "#FD0E35";
     setTimeout(function () {
         topRight.style.backgroundColor = "darkred";
-    }, 250);
+    }, 300);
 }
 
 function flashYellow () {
     bottomLeft.style.backgroundColor = "yellow";
     setTimeout(function () {
         bottomLeft.style.backgroundColor = "#FFAA1D";
-    }, 250);
+    }, 300);
 }
 
 function flashBlue () {
     bottomRight.style.backgroundColor = "#76D7EA";
     setTimeout(function () {
         bottomRight.style.backgroundColor = "darkblue";
-    }, 250);
+    }, 300);
 }
 
 topLeft.addEventListener("click", function (evt) {
