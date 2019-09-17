@@ -17,10 +17,9 @@ header {
     position: relative;
 }
 
-/* body {
-    display: flex;
-    justify-content: center;
-} */
+body {
+    background: lightgray;
+}
 
 /* .box {
     
@@ -68,31 +67,32 @@ header {
     width:200px; 
     height:200px; 
     border:3px solid #000; 
-    background: green;
-    border-radius: 200px 0 0 0;
+    background: darkgreen;
+    border-radius: 100px 0 0 0;
 }
+
 
 #quarterCircleTopRight {
     width:200px; 
     height:200px; 
     border:3px solid #000; 
-    background: red;
-    border-radius: 0 200px 0 0;
+    background: darkred;
+    border-radius: 0 100px 0 0;
 }
 
 #quarterCircleBottomLeft {
     width:200px; 
     height:200px; 
     border:3px solid #000; 
-    background: yellow;
-    border-radius: 0 0 0 200px;
+    background: #FFAA1D;
+    border-radius: 0 0 0 100px;
 }
 
 #quarterCircleBottomRight {
     width:200px; 
     height:200px; 
     border:3px solid #000; 
-    background: blue;
-    border-radius: 0 0 200px 0;
+    background: darkblue;
+    border-radius: 0 0 100px 0;
 
 }
