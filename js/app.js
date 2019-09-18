@@ -7,13 +7,13 @@ function randomNum () {
 //console.log(randomNum());
 
 let computerPattern = []; // computer's patter
-let userPattern = []; // user's input
+var userPattern = []; // user's input
 let counter; // number of lights
 
 const board = document.querySelector(".board");
-console.log(board);
+// console.log(board);
 const topLeft = document.querySelector("#quarterCircleTopLeft");
-console.log(topLeft);
+// console.log(topLeft);
 const topRight = document.querySelector("#quarterCircleTopRight");
 const bottomLeft = document.querySelector("#quarterCircleBottomLeft");
 const bottomRight = document.querySelector("#quarterCircleBottomRight");
@@ -21,7 +21,7 @@ const bottomRight = document.querySelector("#quarterCircleBottomRight");
 const instructButton = document.querySelector("#instruction");
 const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
-
+const submitButton = document.querySelector("#submit");
 
 // Press start button
 // Show sequence
@@ -40,18 +40,25 @@ startButton.addEventListener("click", function (evt) {
 
 });
 
+submitButton.addEventListener("click", function (evt) {
+    evt.preventDefault();
+    checkUser();
+
+});
+
 function playGame () {
     counter = 1;
-
+    console.log("user check top: " + userPattern)
     // for loop until counter
     // generate pattern
     // user input
     // check user input
     
-    for(let i = 0; i < counter; i++ ) {
+    // for (let i = 0; i < counter; i++) {
+
         let holder = randomNum();
         computerPattern.push(holder);
-        // computerPattern = [1,2,3,4];
+        // computerPattern = [1,2,1,2];
         console.log("computer: " + computerPattern);
 
         // computer flashes lights, code from https://borgs.cybrilla.com/tils/javascript-for-loop-with-delay-in-each-iteration-using-iife/
@@ -63,40 +70,101 @@ function playGame () {
             })(i);
         };
         
+        
         board.addEventListener("click", function (evt) {
-            //evt.preventDefault();
-            //console.log(evt);
-            if(evt.target.id == topLeft.id) {
+            evt.preventDefault();
+            console.log(evt);
+            if(evt.target.id === topLeft.id) {
                 userPattern.push(1);
                 flashGreen();
-                console.log("user in the loop " + userPattern);
-            } else if(evt.target.id == topRight.id) {
+                console.log("user check click: " + userPattern);
+                
+                // if(checkUser(computerPattern,userPattern)) {
+                //     counter++;                 
+                //     userPattern = [];                   
+                //     console.log("count: " + counter);
+
+                // } else {
+                //     counter = 0;
+                // }
+            } else if(evt.target.id === topRight.id) {
                 userPattern.push(2);
                 flashRed();
-                console.log("user in the loop " + userPattern);
-            } else if(evt.target.id == bottomLeft.id) {
+                console.log("user check click: " + userPattern);
+                
+                // if(checkUser(computerPattern,userPattern)) {
+                //     counter++;
+                    
+                //     userPattern = [];
+                    
+                //     console.log("count: " + counter);
+                // } else {
+                //     counter = 0;
+                // }
+            
+            } else if(evt.target.id === bottomLeft.id) {
                 userPattern.push(3);
                 flashYellow();
-                console.log("user in the loop " + userPattern);
-            } else if(evt.target.id == bottomRight.id) {
+                console.log("user check click: " + userPattern);
+                // if(checkUser(computerPattern,userPattern)) {
+                //     counter++;
+                    
+                //     userPattern = [];
+                    
+                //     console.log("count: " + counter);
+                // } else {
+                //     counter = 0;
+                // }
+            } else if(evt.target.id === bottomRight.id) {
                 userPattern.push(4);
                 flashBlue();
-                console.log("user in the loop " + userPattern);
+                console.log("user check click: " + userPattern);
+                // if(checkUser(computerPattern,userPattern)) {
+                //     counter++;
+                    
+                //     userPattern = [];
+                    
+                //     console.log("count: " + counter);
+                // } else {
+                //     counter = 0;
+                // }
             }
         });
+        
+        // if(checkUser(computerPattern,userPattern)) {
+        //     counter++;                 
+        //     userPattern = [];                   
+        //     console.log("count: " + counter);
 
+        // } else {
+        //     counter = 0;
+        // }
+       
+    // }
+}
 
-        if(JSON.stringify(computerPattern) === JSON.stringify(userPattern)) { // code from GeeksforGeeks
-            counter++;
-            console.log("user: " + userPattern);
-            
+let testArr1 = [1,2,3];
+let testArr2 = [1,2,4];
+if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
+    console.log("= it works")
+} else {
+    console.log("!= works")
+}
 
-        } else {
-            break;
-            
-        }
+function checkUser () {
+    if(JSON.stringify(computerPattern) === JSON.stringify(userPattern)) { // code from GeeksforGeeks
+        counter++;
+        userPattern = [];
+        console.log("user check submit: " + userPattern);
+        console.log("counter: " + counter)
+        playGame();
+        
+    } else {
+        userPattern = [];
+        computerPattern = [];
+        console.log["doesn't match"]
     }
-
+    
 }
 
 
