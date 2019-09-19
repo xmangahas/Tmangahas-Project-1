@@ -13,22 +13,40 @@ let active = true;
 
 const board = document.querySelector(".board");
 // console.log(board);
+const round = document.querySelector("#count");
+// console.log(round);
 const topLeft = document.querySelector("#quarterCircleTopLeft");
-// console.log(topLeft);
 const topRight = document.querySelector("#quarterCircleTopRight");
 const bottomLeft = document.querySelector("#quarterCircleBottomLeft");
 const bottomRight = document.querySelector("#quarterCircleBottomRight");
 
-const instructButton = document.querySelector("#instruction");
+const instructButton = document.querySelector("#instructions");
 const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
 const submitButton = document.querySelector("#submit");
+
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector(".close-button");
 
 // Press start button
 // Show sequence
 // User enters sequence
 // If correct, go to next level and show next sequence
 // If incorrect, reset game
+
+instructButton.addEventListener("click", toggleModal);
+closeModal.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+function toggleModal () {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick () {
+    if(event.target === modal) {
+        toggleModal();
+    }
+}
 
 resetButton.addEventListener("click", function (evt) {
     evt.preventDefault();
@@ -37,29 +55,30 @@ resetButton.addEventListener("click", function (evt) {
 
 startButton.addEventListener("click", function (evt) {
     evt.preventDefault();
+    counter = 1;
     playGame();
-
+    
 });
 
 submitButton.addEventListener("click", function (evt) {
     evt.preventDefault();
     checkUser();
-    
-
 });
 
-
+function displayRound (num) {
+    round.innerText = num;
+}
 
 function playGame () {
-    counter = 1;
+    startButton.disabled = true;
+    startButton.classList.toggle("disabled",true);
+    displayRound (counter);
     console.log("user check top: " + userPattern)
     // for loop until counter
     // generate pattern
     // user input
     // check user input
     
-
-    // for (let i = 0; i < counter; i++) {
 
         let holder = randomNum();
         computerPattern.push(holder);
@@ -111,14 +130,12 @@ function playGame () {
         //     }
             
         // });
-        
 
-       
-    // }
 }
 
 function userInput(evt) {
     evt.preventDefault();
+    
     if(evt.target.id === topLeft.id) {
         userPattern.push(1);
         flashGreen();
@@ -161,7 +178,7 @@ function checkUser () {
     if(JSON.stringify(computerPattern) === JSON.stringify(userPattern)) { // code from GeeksforGeeks
         counter++;
         userPattern = [];
-        
+        displayRound(counter);
         console.log("user check submit: " + userPattern);
         console.log("counter: " + counter)
         playGame();
@@ -169,13 +186,14 @@ function checkUser () {
     } else {
         userPattern = [];
         computerPattern = [];
+        counter = 0;
+        displayRound(counter);
+        startButton.disabled = false;
+        startButton.classList.toggle("disabled",false);
         window.alert("Wrong input!")
         console.log("doesn't match");
-    }
-    
+    } 
 }
-
-
 
 function flashColor (num) {
     if (num === 1) {
