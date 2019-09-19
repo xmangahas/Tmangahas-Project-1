@@ -117,14 +117,6 @@ function playGame () {
     // }
 }
 
-// let testArr1 = [1,2,3];
-// let testArr2 = [1,2,4];
-// if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
-//     console.log("= it works")
-// } else {
-//     console.log("!= works")
-// }
-
 function userInput(evt) {
     evt.preventDefault();
     if(evt.target.id === topLeft.id) {
@@ -177,7 +169,8 @@ function checkUser () {
     } else {
         userPattern = [];
         computerPattern = [];
-        console.log["doesn't match"];
+        window.alert("Wrong input!")
+        console.log("doesn't match");
     }
     
 }
@@ -203,28 +196,28 @@ function flashGreen () {
     topLeft.style.backgroundColor = "lightgreen";
     setTimeout(function () {
         topLeft.style.backgroundColor = "darkgreen";
-    }, 500);
+    }, 400);
 }
 
 function flashRed () {
     topRight.style.backgroundColor = "#FD0E35";
     setTimeout(function () {
         topRight.style.backgroundColor = "darkred";
-    }, 500);
+    }, 400);
 }
 
 function flashYellow () {
     bottomLeft.style.backgroundColor = "yellow";
     setTimeout(function () {
         bottomLeft.style.backgroundColor = "#FFAA1D";
-    }, 500);
+    }, 400);
 }
 
 function flashBlue () {
     bottomRight.style.backgroundColor = "#76D7EA";
     setTimeout(function () {
         bottomRight.style.backgroundColor = "darkblue";
-    }, 500);
+    }, 400);
 }
 
 
