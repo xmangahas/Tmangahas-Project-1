@@ -7,8 +7,9 @@ function randomNum () {
 //console.log(randomNum());
 
 let computerPattern = []; // computer's patter
-var userPattern = []; // user's input
+let userPattern = []; // user's input
 let counter; // number of lights
+let active = true;
 
 const board = document.querySelector(".board");
 // console.log(board);
@@ -43,8 +44,11 @@ startButton.addEventListener("click", function (evt) {
 submitButton.addEventListener("click", function (evt) {
     evt.preventDefault();
     checkUser();
+    
 
 });
+
+
 
 function playGame () {
     counter = 1;
@@ -54,6 +58,7 @@ function playGame () {
     // user input
     // check user input
     
+
     // for (let i = 0; i < counter; i++) {
 
         let holder = randomNum();
@@ -70,91 +75,101 @@ function playGame () {
             })(i);
         };
         
-        
-        board.addEventListener("click", function (evt) {
-            evt.preventDefault();
-            console.log(evt);
-            if(evt.target.id === topLeft.id) {
-                userPattern.push(1);
-                flashGreen();
-                console.log("user check click: " + userPattern);
-                
-                // if(checkUser(computerPattern,userPattern)) {
-                //     counter++;                 
-                //     userPattern = [];                   
-                //     console.log("count: " + counter);
+        board.addEventListener("click", userInput);
 
-                // } else {
-                //     counter = 0;
-                // }
-            } else if(evt.target.id === topRight.id) {
-                userPattern.push(2);
-                flashRed();
-                console.log("user check click: " + userPattern);
+        // code below is stacking event listeners
+        // board.addEventListener("click", function test (evt) {
+        //     evt.preventDefault();
+        //     console.log(evt);
+
+        //     if(evt.target.id === topLeft.id) {
+        //         userPattern.push(1);
+        //         flashGreen();
                 
-                // if(checkUser(computerPattern,userPattern)) {
-                //     counter++;
-                    
-                //     userPattern = [];
-                    
-                //     console.log("count: " + counter);
-                // } else {
-                //     counter = 0;
-                // }
+        //         console.log("user check click: " + userPattern);
+                
+
+        //     } else if(evt.target.id === topRight.id) {
+        //         userPattern.push(2);
+        //         flashRed();
+                
+        //         console.log("user check click: " + userPattern);
+                
             
-            } else if(evt.target.id === bottomLeft.id) {
-                userPattern.push(3);
-                flashYellow();
-                console.log("user check click: " + userPattern);
-                // if(checkUser(computerPattern,userPattern)) {
-                //     counter++;
-                    
-                //     userPattern = [];
-                    
-                //     console.log("count: " + counter);
-                // } else {
-                //     counter = 0;
-                // }
-            } else if(evt.target.id === bottomRight.id) {
-                userPattern.push(4);
-                flashBlue();
-                console.log("user check click: " + userPattern);
-                // if(checkUser(computerPattern,userPattern)) {
-                //     counter++;
-                    
-                //     userPattern = [];
-                    
-                //     console.log("count: " + counter);
-                // } else {
-                //     counter = 0;
-                // }
-            }
-        });
-        
-        // if(checkUser(computerPattern,userPattern)) {
-        //     counter++;                 
-        //     userPattern = [];                   
-        //     console.log("count: " + counter);
+        //     } else if(evt.target.id === bottomLeft.id) {
+        //         userPattern.push(3);
+        //         flashYellow();
+                
+        //         console.log("user check click: " + userPattern);
 
-        // } else {
-        //     counter = 0;
-        // }
+        //     } else if(evt.target.id === bottomRight.id) {
+        //         userPattern.push(4);
+        //         flashBlue();
+                
+        //         console.log("user check click: " + userPattern);
+
+        //     }
+            
+        // });
+        
+
        
     // }
 }
 
-let testArr1 = [1,2,3];
-let testArr2 = [1,2,4];
-if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
-    console.log("= it works")
-} else {
-    console.log("!= works")
+// let testArr1 = [1,2,3];
+// let testArr2 = [1,2,4];
+// if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
+//     console.log("= it works")
+// } else {
+//     console.log("!= works")
+// }
+
+function userInput(evt) {
+    evt.preventDefault();
+    if(evt.target.id === topLeft.id) {
+        userPattern.push(1);
+        flashGreen();
+        
+        console.log("user check click: " + userPattern);
+        
+
+    } else if(evt.target.id === topRight.id) {
+        userPattern.push(2);
+        flashRed();
+        
+        console.log("user check click: " + userPattern);
+        
+    
+    } else if(evt.target.id === bottomLeft.id) {
+        userPattern.push(3);
+        flashYellow();
+        
+        console.log("user check click: " + userPattern);
+
+    } else if(evt.target.id === bottomRight.id) {
+        userPattern.push(4);
+        flashBlue();
+        
+        console.log("user check click: " + userPattern);
+
+    }
+    //evt.stopPropagation();
 }
+
+// let testArr1 = [1,2,3];
+// let testArr2 = [1,2,4];
+// if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
+//     console.log("= it works")
+// } else {
+//     console.log("!= works")
+// }
 
 function checkUser () {
     if(JSON.stringify(computerPattern) === JSON.stringify(userPattern)) { // code from GeeksforGeeks
         counter++;
         userPattern = [];
+        
         console.log("user check submit: " + userPattern);
         console.log("counter: " + counter)
         playGame();
@@ -162,12 +177,10 @@ function checkUser () {
     } else {
         userPattern = [];
         computerPattern = [];
-        console.log["doesn't match"]
+        console.log["doesn't match"];
     }
     
 }
-
-
 
 
 
