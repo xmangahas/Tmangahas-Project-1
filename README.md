@@ -4,7 +4,7 @@
     * This program is to play the game Simon.  Simon is a memory game.  The game will generate a combination of lights and the user will try to repeat the combination.  The game starts with one light and each time the user is successful, an additional light will be added.
 
 * Brief Example:
-    * ![Simon Screenshot](https://imgur.com/dczKST3)
+    * ![Simon game screenshot](https://i.imgur.com/dczKST3.jpg)
 
 * List of features:
     * Simon game includes the following:
