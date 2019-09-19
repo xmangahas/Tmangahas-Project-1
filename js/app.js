@@ -6,7 +6,7 @@ function randomNum () {
 }
 //console.log(randomNum());
 
-let computerPattern = []; // computer's patter
+let computerPattern = []; // computer's pattern
 let userPattern = []; // user's input
 let counter; // number of lights
 let active = true;
@@ -27,6 +27,7 @@ const submitButton = document.querySelector("#submit");
 
 const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-button");
+const modalContent = document.querySelector(".modal-content");
 
 // Press start button
 // Show sequence
@@ -39,6 +40,7 @@ closeModal.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
 function toggleModal () {
+    modalTextInst();
     modal.classList.toggle("show-modal");
 }
 
@@ -46,6 +48,19 @@ function windowOnClick () {
     if(event.target === modal) {
         toggleModal();
     }
+}
+
+function toggleModalLose () {
+    modalTextLose();
+    modal.classList.toggle("show-modal");
+}
+
+function modalTextLose () {
+    modalContent.innerText = "Incorrect pattern.  You lose!  Play again.";
+}
+
+function modalTextInst () {
+    modalContent.innerText = "Play the simon game and have fun testing your memory.  Follow the pattern of lights and repeat the same combination and click Submit.  If you get the correct pattern, you will move on the next round.  Each round will add an additional light.  GLHF";
 }
 
 resetButton.addEventListener("click", function (evt) {
@@ -69,7 +84,10 @@ function displayRound (num) {
     round.innerText = num;
 }
 
+
+
 function playGame () {
+    
     startButton.disabled = true;
     startButton.classList.toggle("disabled",true);
     displayRound (counter);
@@ -163,7 +181,7 @@ function userInput(evt) {
         console.log("user check click: " + userPattern);
 
     }
-    //evt.stopPropagation();
+    
 }
 
 // let testArr1 = [1,2,3];
@@ -179,6 +197,7 @@ function checkUser () {
         counter++;
         userPattern = [];
         displayRound(counter);
+
         console.log("user check submit: " + userPattern);
         console.log("counter: " + counter)
         playGame();
@@ -190,10 +209,13 @@ function checkUser () {
         displayRound(counter);
         startButton.disabled = false;
         startButton.classList.toggle("disabled",false);
-        window.alert("Wrong input!")
+        // window.alert("Incorrect pattern.  You lose!  Play again.")
+        toggleModalLose();
         console.log("doesn't match");
     } 
 }
+
+
 
 function flashColor (num) {
     if (num === 1) {
