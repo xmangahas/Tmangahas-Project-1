@@ -84,7 +84,8 @@ function displayRound (num) {
     round.innerText = num;
 }
 
-
+submitButton.disabled = true;
+submitButton.classList.toggle("disabled",true);
 
 function playGame () {
     
@@ -114,6 +115,8 @@ function playGame () {
         
         board.addEventListener("click", userInput);
 
+        submitButton.disabled = false;
+        submitButton.classList.toggle("disabled",false);
         // code below is stacking event listeners
         // board.addEventListener("click", function test (evt) {
         //     evt.preventDefault();
@@ -209,6 +212,8 @@ function checkUser () {
         displayRound(counter);
         startButton.disabled = false;
         startButton.classList.toggle("disabled",false);
+        submitButton.disabled = true;
+        submitButton.classList.toggle("disabled",true);
         // window.alert("Incorrect pattern.  You lose!  Play again.")
         toggleModalLose();
         console.log("doesn't match");
