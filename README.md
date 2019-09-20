@@ -1,7 +1,8 @@
 # Tmangahas-Project-1
 
 * Description:
-    * This program is to play the game Simon.  Simon is a memory game.  The game will generate a combination of lights and the user will try to repeat the combination.  The game starts with one light and each time the user is successful, an additional light will be added.
+    * This project is the memory game Simon.  The game will generate a combination of lights and the user will try to repeat the combination.  The game starts with one light and each time the user is successful, an additional light will be added.
+    * I approached the project by enabling the lighting features first and then going through each step of the game for both simon's (computer) side and the user's (player) side.
 
 * Brief Example:
     * ![Simon game screenshot](https://i.imgur.com/dczKST3.jpg)
@@ -12,13 +13,18 @@
         * Submit button - after the user enters a pattern, user clicks submit to check if they have it correct
         * Reset - resets the game
         * Instruction button -  Provides brief instructions
+        * Round indicator - shows user the round they are on / number of lights flashed by simon
         * Each Simon section lights up
-        * Each Simon section is clickable by the user
+        * Each Simon section is clickable by the user and lights up when clicked
+    * Future updates/Unresolved Issues
+        * Remove submit button - the game will check user's input automatically
+        * Disable the board from being clicked while it is not the user's turn
+        * Add sound
 
 * List of technologies used:
     * HTML
     * CSS
-    * Javascript
+    * Javascript - functions, event listeners, modal
 
 * Getting Started:
     * Fork - [Github Fork Link](https://github.com/xmangahas/Tmangahas-Project-1.git)
