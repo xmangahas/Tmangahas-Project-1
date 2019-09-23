@@ -107,7 +107,7 @@ function playGame () {
         (function (i) {
             setTimeout (function () {
                 flashColor(computerPattern[i]);
-            }, 1500*i);
+            }, 1300*i);
         })(i);
     };
 
@@ -181,6 +181,7 @@ function checkUser () {
         computerPattern = [];
         counter = 0;
         displayRound(counter);
+        board.removeEventListener("click", userInput);
         startButton.disabled = false;
         startButton.classList.toggle("disabled",false);
         // submitButton.disabled = true;
