@@ -10,14 +10,14 @@
 * List of features:
     * Simon game includes the following:
         * Start button - starts the game
-        * Submit button - after the user enters a pattern, user clicks submit to check if they have it correct
+        * ~~Submit button - after the user enters a pattern, user clicks submit to check if they have it correct~~
         * Reset - resets the game
         * Instruction button -  Provides brief instructions
         * Round indicator - shows user the round they are on / number of lights flashed by simon
         * Each Simon section lights up
         * Each Simon section is clickable by the user and lights up when clicked
     * Future updates/Unresolved Issues
-        * Remove submit button - the game will check user's input automatically
+        * ~~Remove submit button - the game will check user's input automatically~~
         * Disable the board from being clicked while it is not the user's turn
         * Add sound
 
