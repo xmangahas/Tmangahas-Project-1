@@ -1,15 +1,13 @@
-//console.log("testing 123");
 
 function randomNum () {
     let num = Math.floor((Math.random() * 4) + 1)  // generate a random number 1-4
     return num;
 }
-//console.log(randomNum());
+
 
 let computerPattern = []; // computer's pattern
 let userPattern = []; // user's input
 let counter; // number of lights
-let active = true;
 
 const board = document.querySelector(".board");
 // console.log(board);
@@ -23,7 +21,7 @@ const bottomRight = document.querySelector("#quarterCircleBottomRight");
 const instructButton = document.querySelector("#instructions");
 const startButton = document.querySelector("#start");
 const resetButton = document.querySelector("#reset");
-const submitButton = document.querySelector("#submit");
+// const submitButton = document.querySelector("#submit");
 
 const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-button");
@@ -60,7 +58,7 @@ function modalTextLose () {
 }
 
 function modalTextInst () {
-    modalContent.innerText = "Play the simon game and have fun testing your memory.  Follow the pattern of lights and repeat the same combination and click Submit.  If you get the correct pattern, you will move on the next round.  Each round will add an additional light.  GLHF";
+    modalContent.innerText = "Play the simon game and have fun testing your memory.  Follow the pattern of lights and repeat the same combination.  If you get the correct pattern, you will move on the next round.  Each round will add an additional light.  GLHF";
 }
 
 resetButton.addEventListener("click", function (evt) {
@@ -75,17 +73,17 @@ startButton.addEventListener("click", function (evt) {
     
 });
 
-submitButton.addEventListener("click", function (evt) {
-    evt.preventDefault();
-    checkUser();
-});
+// submitButton.addEventListener("click", function (evt) {
+//     evt.preventDefault();
+//     checkUser();
+// });
 
 function displayRound (num) {
     round.innerText = num;
 }
 
-submitButton.disabled = true;
-submitButton.classList.toggle("disabled",true);
+// submitButton.disabled = true;
+// submitButton.classList.toggle("disabled",true);
 
 function playGame () {
     
@@ -98,102 +96,74 @@ function playGame () {
     // user input
     // check user input
     
+    let holder = randomNum();
+    computerPattern.push(holder);
+    // computerPattern = [1,2,1,2];
+    console.log("computer: " + computerPattern);
 
-        let holder = randomNum();
-        computerPattern.push(holder);
-        // computerPattern = [1,2,1,2];
-        console.log("computer: " + computerPattern);
+    // computer flashes lights, code from https://borgs.cybrilla.com/tils/javascript-for-loop-with-delay-in-each-iteration-using-iife/
+    for (let i = 0; i < computerPattern.length; i++) {
+        board.removeEventListener("click", userInput);
+        (function (i) {
+            setTimeout (function () {
+                flashColor(computerPattern[i]);
+            }, 1500*i);
+        })(i);
+    };
 
-        // computer flashes lights, code from https://borgs.cybrilla.com/tils/javascript-for-loop-with-delay-in-each-iteration-using-iife/
-        for (let i = 0; i < computerPattern.length; i++) {
-            (function (i) {
-                setTimeout (function () {
-                    flashColor(computerPattern[i]);
-                }, 1500*i);
-            })(i);
-        };
-        
-        board.addEventListener("click", userInput);
+    board.addEventListener("click", userInput);
+    // userInput2();
 
-        submitButton.disabled = false;
-        submitButton.classList.toggle("disabled",false);
-        // code below is stacking event listeners
-        // board.addEventListener("click", function test (evt) {
-        //     evt.preventDefault();
-        //     console.log(evt);
+    // submitButton.disabled = false;
+    // submitButton.classList.toggle("disabled",false);
 
-        //     if(evt.target.id === topLeft.id) {
-        //         userPattern.push(1);
-        //         flashGreen();
-                
-        //         console.log("user check click: " + userPattern);
-                
-
-        //     } else if(evt.target.id === topRight.id) {
-        //         userPattern.push(2);
-        //         flashRed();
-                
-        //         console.log("user check click: " + userPattern);
-                
-            
-        //     } else if(evt.target.id === bottomLeft.id) {
-        //         userPattern.push(3);
-        //         flashYellow();
-                
-        //         console.log("user check click: " + userPattern);
-
-        //     } else if(evt.target.id === bottomRight.id) {
-        //         userPattern.push(4);
-        //         flashBlue();
-                
-        //         console.log("user check click: " + userPattern);
-
-        //     }
-            
-        // });
 
 }
 
 function userInput(evt) {
     evt.preventDefault();
     
+    // if (userPattern.length === computerPattern.length) {
+    //     checkUser();
     if(evt.target.id === topLeft.id) {
         userPattern.push(1);
         flashGreen();
-        
+        if (userPattern.length === computerPattern.length) {
+            board.removeEventListener("click", userInput);
+            checkUser();
+        }
         console.log("user check click: " + userPattern);
-        
 
     } else if(evt.target.id === topRight.id) {
         userPattern.push(2);
         flashRed();
-        
+        if (userPattern.length === computerPattern.length) {
+            board.removeEventListener("click", userInput);
+            checkUser();
+        }
         console.log("user check click: " + userPattern);
-        
     
     } else if(evt.target.id === bottomLeft.id) {
         userPattern.push(3);
         flashYellow();
-        
+        if (userPattern.length === computerPattern.length) {
+            board.removeEventListener("click", userInput);
+            checkUser();
+        }
         console.log("user check click: " + userPattern);
 
     } else if(evt.target.id === bottomRight.id) {
         userPattern.push(4);
         flashBlue();
-        
+        if (userPattern.length === computerPattern.length) {
+            board.removeEventListener("click", userInput);
+            checkUser();
+        }
         console.log("user check click: " + userPattern);
 
     }
     
 }
-
-// let testArr1 = [1,2,3];
-// let testArr2 = [1,2,4];
-// if(JSON.stringify(testArr1) === JSON.stringify(testArr2)) {
-//     console.log("= it works")
-// } else {
-//     console.log("!= works")
-// }
 
 function checkUser () {
     if(JSON.stringify(computerPattern) === JSON.stringify(userPattern)) { // code from GeeksforGeeks
@@ -203,7 +173,8 @@ function checkUser () {
 
         console.log("user check submit: " + userPattern);
         console.log("counter: " + counter)
-        playGame();
+        //playGame();
+        setTimeout(function() { playGame(); }, 1300);
         
     } else {
         userPattern = [];
@@ -212,8 +183,8 @@ function checkUser () {
         displayRound(counter);
         startButton.disabled = false;
         startButton.classList.toggle("disabled",false);
-        submitButton.disabled = true;
-        submitButton.classList.toggle("disabled",true);
+        // submitButton.disabled = true;
+        // submitButton.classList.toggle("disabled",true);
         // window.alert("Incorrect pattern.  You lose!  Play again.")
         toggleModalLose();
         console.log("doesn't match");
@@ -266,30 +237,84 @@ function flashBlue () {
 }
 
 
+// function userInput2 () {
+//     console.log(computerPattern.length);
+//     console.log(userPattern.length);
+    
+    
+//     if(userPattern.length < computerPattern.length) {
+            
+    
+//         topLeft.addEventListener("click", function (evt) {
+//             userPattern.push(1);
+//             flashGreen();
+            
+//             console.log(userPattern);
+//             userInput2();
+//         });
+        
+//         topRight.addEventListener("click", function (evt) {
+//             userPattern.push(2);
+//             flashRed();
+            
+//             console.log(userPattern);
+//             userInput2();
+//         });
+        
+//         bottomLeft.addEventListener("click", function (evt) {
+//             userPattern.push(3);
+//             flashYellow();
+            
+//             console.log(userPattern);
+//             userInput2();
+//         });
+        
+//         bottomRight.addEventListener("click", function (evt) {
+//             userPattern.push(4);
+//             flashBlue();
+            
+//             console.log(userPattern);
+//             userInput2();
+//         });
+     
+//     } else {
+//         checkUser();
+//     }
+    
+    
+    
+// }
+// code below is stacking event listeners
+// board.addEventListener("click", function test (evt) {
+//     evt.preventDefault();
+//     console.log(evt);
 
-// topLeft.addEventListener("click", function (evt) {
-//     userPattern.push(1);
-//     // topLeft.classList.toggle("flashGreen");
-//     // evt.path[0].classList.toggle("flashGreen");
-//     // topLeft.style.backgroundColor = "lightgreen";
-//     flashGreen();
-//     console.log(userPattern);
-// });
+//     if(evt.target.id === topLeft.id) {
+//         userPattern.push(1);
+//         flashGreen();
+                
+//         console.log("user check click: " + userPattern);
+                
 
-// topRight.addEventListener("click", function (evt) {
-//     userPattern.push(2);
-//     flashRed();
-//     console.log(userPattern);
-// });
+//     } else if(evt.target.id === topRight.id) {
+//         userPattern.push(2);
+//         flashRed();
+                
+//         console.log("user check click: " + userPattern);
+                
+            
+//     } else if(evt.target.id === bottomLeft.id) {
+//         userPattern.push(3);
+//         flashYellow();
+                
+//         console.log("user check click: " + userPattern);
 
-// bottomLeft.addEventListener("click", function (evt) {
-//     userPattern.push(3);
-//     flashYellow();
-//     console.log(userPattern);
-// });
+//     } else if(evt.target.id === bottomRight.id) {
+//         userPattern.push(4);
+//         flashBlue();
+                
+//         console.log("user check click: " + userPattern);
 
-// bottomRight.addEventListener("click", function (evt) {
-//     userPattern.push(4);
-//     flashBlue();
-//     console.log(userPattern);
+//     }
+            
 // });

@@ -5,7 +5,7 @@
     * I approached the project by enabling the lighting features first and then going through each step of the game for both simon's (computer) side and the user's (player) side.
 
 * Brief Example:
-    * ![Simon game screenshot](https://i.imgur.com/dczKST3.jpg)
+    * ![Simon game screenshot](https://i.imgur.com/SHEkGfA.jpg)
 
 * List of features:
     * Simon game includes the following:
@@ -35,3 +35,6 @@
     * Please feel free to contribute by creating issues or pull requests.
     * Link to main repository - [Link to repo](https://github.com/xmangahas/Tmangahas-Project-1)
     * Link to issues - [Link to issues](https://github.com/xmangahas/Tmangahas-Project-1/issues)
+
+* Version 1.1
+    * Submit button no longer needed - Simon checks user input automatically
