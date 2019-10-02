@@ -1,4 +1,4 @@
-
+// you could just put this at the top of your functions list
 function randomNum () {
     let num = Math.floor((Math.random() * 4) + 1)  // generate a random number 1-4
     return num;
@@ -60,7 +60,7 @@ function modalTextLose () {
 function modalTextInst () {
     modalContent.innerText = "Play the simon game and have fun testing your memory.  Follow the pattern of lights and repeat the same combination.  If you get the correct pattern, you will move on the next round.  Each round will add an additional light.  GLHF";
 }
-
+// when possible go the ES6 way IIFE it looks better and it looks better on the resume
 resetButton.addEventListener("click", function (evt) {
     evt.preventDefault();
     location.reload();
@@ -73,6 +73,7 @@ startButton.addEventListener("click", function (evt) {
     
 });
 
+// remove unused code
 // submitButton.addEventListener("click", function (evt) {
 //     evt.preventDefault();
 //     checkUser();
@@ -102,6 +103,7 @@ function playGame () {
     console.log("computer: " + computerPattern);
 
     // computer flashes lights, code from https://borgs.cybrilla.com/tils/javascript-for-loop-with-delay-in-each-iteration-using-iife/
+    // nice!
     for (let i = 0; i < computerPattern.length; i++) {
         board.removeEventListener("click", userInput);
         (function (i) {
@@ -237,7 +239,8 @@ function flashBlue () {
     }, 400);
 }
 
-
+// you don't need unused code in your production code. 
+// you can add this to the repo if you want to keep track of your past bugs and how you solved them. since they're also kind of large you can create it's own README or hide them using markdown syntax to create a drop down of past bugs
 // function userInput2 () {
 //     console.log(computerPattern.length);
 //     console.log(userPattern.length);
